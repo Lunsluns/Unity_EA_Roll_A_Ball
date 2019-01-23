@@ -28,10 +28,13 @@ public class PlayerController : MonoBehaviour
         float move_Vertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(move_Horizontal, 0.0f, move_Vertical);
-        transform.rotation = Quaternion.LookRotation(movement);
-
-
-        transform.Translate(movement * Time.deltaTime, Space.World);
+       /* //transform.rotation = Quaternion.LookRotation(movement);
+        // transform.Translate(movement * Time.deltaTime, Space.World); 
+        // code not needed as it now doesn't snap back to original position */
+        if (movement != Vector3.zero)
+        {
+            transform.rotation = (Quaternion.LookRotation(movement));
+        }
 
         rb.AddForce(movement * speed);
     }
